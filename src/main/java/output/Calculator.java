@@ -37,14 +37,20 @@ public class Calculator {
             parser.removeErrorListeners();
             parser.addErrorListener(errorListener);
             tree = parser.program();
-            if (errorListener.isError()) {                 // --- chyba v lexeru nebo parseru ---
-                System.err.println("Chyba v prikladu na radku: " + (i+1)); // vypis radku souboru
+            if (errorListener.isError()) {                                              // --- chyba v lexeru nebo parseru ---
+                System.err.println("Chyba příkladu v souboru na řádku č. " + (i + 1));  // vypis radku souboru
                 errorListener.displayErrMsg();
                 errorListener.set();
             } else {
-                eval.visit(tree);
+                try {
+                    eval.visit(tree);
+                } catch (IllegalArgumentException e) {
+                    System.err.println("Chyba příkladu v souboru na řádku č. " + (i + 1)); // --- spatne cislo
+                    System.err.println(e.getMessage());
+                }
             }
         }
+
         System.out.println("--- KONEC ---");
     }
 

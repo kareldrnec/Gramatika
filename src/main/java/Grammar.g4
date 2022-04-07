@@ -1,14 +1,14 @@
 grammar Grammar;
 
 program: print*;
-//print: 'pocitej' '(' expression ')' ';';
+
 print: expression ';';
-//parents: '(' expression ')';
-//expression: expression (ADD|MINUS|MUL|DIV|MOD) expression | VARIABLE | OPRAND | parents;
+
 expression:'(' expression ')'               # Parents // zavorky
           | expression POW expression       # POW
-          | expression MUL expression       # MUL   // nasobeni
-          | expression DIV expression       # DIV   // deleni
+          | expression MUL expression       # MUL
+          | expression DIV expression       # DIV
+          | expression MOD expression       # MOD
           | expression ADD expression       # ADD   // scitani
           | expression MINUS expression     # MINUS // odecitani
           | INV '(' expression ')'          # INV
@@ -19,22 +19,22 @@ expression:'(' expression ')'               # Parents // zavorky
           | NUMBER                          # NUMBER
           ;
 
+POW: '^';
+MUL: '*';
+MOD: '%';
+DIV: '/';
+ADD: '+';
+MINUS: '-';
+
+INV: 'inv' | 'inverse';
 FACT: 'fact' | 'factorial';
 RAND: 'rand' | 'random';
 MAX: 'max' | 'maximum';
 MIN: 'min' | 'minimum';
-INV: 'inv' | 'inverse';
 
 NUMBER: INT | DOUBLE;
-INT: [0-9]+('_'[0-9]+)*;
-DOUBLE: [0-9]+('_'[0-9]+)* '.' [0-9]+('_'[0-9]+)*;
-
-ADD: '+';
-MINUS: '-';
-MUL: '*';
-POW: '^';
-DIV: '/';
-
+INT: [0-9]+([0-9]+)*;
+DOUBLE: [0-9]+([0-9]+)* '.' [0-9]+([0-9]+)*;
 
 NEWLINE: [\t\r\n] -> skip;
 WS: ' ' -> skip;

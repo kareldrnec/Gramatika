@@ -23,20 +23,6 @@ public interface GrammarVisitor<T> extends ParseTreeVisitor<T> {
 	 */
 	T visitPrint(GrammarParser.PrintContext ctx);
 	/**
-	 * Visit a parse tree produced by the {@code INV}
-	 * labeled alternative in {@link GrammarParser#expression}.
-	 * @param ctx the parse tree
-	 * @return the visitor result
-	 */
-	T visitINV(GrammarParser.INVContext ctx);
-	/**
-	 * Visit a parse tree produced by the {@code DIV}
-	 * labeled alternative in {@link GrammarParser#expression}.
-	 * @param ctx the parse tree
-	 * @return the visitor result
-	 */
-	T visitDIV(GrammarParser.DIVContext ctx);
-	/**
 	 * Visit a parse tree produced by the {@code ADD}
 	 * labeled alternative in {@link GrammarParser#expression}.
 	 * @param ctx the parse tree
@@ -58,12 +44,12 @@ public interface GrammarVisitor<T> extends ParseTreeVisitor<T> {
 	 */
 	T visitRAND(GrammarParser.RANDContext ctx);
 	/**
-	 * Visit a parse tree produced by the {@code MIN}
+	 * Visit a parse tree produced by the {@code MOD}
 	 * labeled alternative in {@link GrammarParser#expression}.
 	 * @param ctx the parse tree
 	 * @return the visitor result
 	 */
-	T visitMIN(GrammarParser.MINContext ctx);
+	T visitMOD(GrammarParser.MODContext ctx);
 	/**
 	 * Visit a parse tree produced by the {@code MAX}
 	 * labeled alternative in {@link GrammarParser#expression}.
@@ -86,13 +72,6 @@ public interface GrammarVisitor<T> extends ParseTreeVisitor<T> {
 	 */
 	T visitParents(GrammarParser.ParentsContext ctx);
 	/**
-	 * Visit a parse tree produced by the {@code POW}
-	 * labeled alternative in {@link GrammarParser#expression}.
-	 * @param ctx the parse tree
-	 * @return the visitor result
-	 */
-	T visitPOW(GrammarParser.POWContext ctx);
-	/**
 	 * Visit a parse tree produced by the {@code FACT}
 	 * labeled alternative in {@link GrammarParser#expression}.
 	 * @param ctx the parse tree
@@ -106,4 +85,32 @@ public interface GrammarVisitor<T> extends ParseTreeVisitor<T> {
 	 * @return the visitor result
 	 */
 	T visitMINUS(GrammarParser.MINUSContext ctx);
+	/**
+	 * Visit a parse tree produced by the {@code INV}
+	 * labeled alternative in {@link GrammarParser#expression}.
+	 * @param ctx the parse tree
+	 * @return the visitor result
+	 */
+	T visitINV(GrammarParser.INVContext ctx);
+	/**
+	 * Visit a parse tree produced by the {@code DIV}
+	 * labeled alternative in {@link GrammarParser#expression}.
+	 * @param ctx the parse tree
+	 * @return the visitor result
+	 */
+	T visitDIV(GrammarParser.DIVContext ctx);
+	/**
+	 * Visit a parse tree produced by the {@code MIN}
+	 * labeled alternative in {@link GrammarParser#expression}.
+	 * @param ctx the parse tree
+	 * @return the visitor result
+	 */
+	T visitMIN(GrammarParser.MINContext ctx);
+	/**
+	 * Visit a parse tree produced by the {@code POW}
+	 * labeled alternative in {@link GrammarParser#expression}.
+	 * @param ctx the parse tree
+	 * @return the visitor result
+	 */
+	T visitPOW(GrammarParser.POWContext ctx);
 }

@@ -53,11 +53,19 @@ public class EvalVisitor extends GrammarBaseVisitor<Float>{
         return left * right;
     }
 
+    @Override public Float visitMOD(GrammarParser.MODContext ctx) {
+        Float left = visit(ctx.expression(0));
+        Float right = visit(ctx.expression(1));
+        return left % right;
+    }
+
+
     @Override public Float visitDIV(GrammarParser.DIVContext ctx) {
         Float left = visit(ctx.expression(0));
         Float right = visit(ctx.expression(1));
         if (right == 0) {
-            System.err.println("divide by zero at: Line " + ctx.getStart().getLine() + ", Position " + ctx.getStart().getCharPositionInLine());
+            throw new IllegalArgumentException("IllegalArgumentException: Nelze delit cislem 0!");
+            // System.err.println("divide by zero at: Line " + ctx.getStart().getLine() + ", Position " + ctx.getStart().getCharPositionInLine());
             //System.exit(0);
         }
         return left / right;
@@ -127,8 +135,9 @@ public class EvalVisitor extends GrammarBaseVisitor<Float>{
 
         Integer intValue = val.intValue();
         if ((val - intValue) != 0) {
-            System.err.println("Číslo ve faktoriálu musí být celé číslo!");
-            //System.exit(0);
+            throw new IllegalArgumentException("Číslo ve faktoriálu musí být celé kladné číslo!");
+        } else if (val > 12) {
+            throw new IllegalArgumentException("Moc velké číslo pro výpočet faktoriálu! Maximální hodnota pro výpočet faktoriálu je 12 (12.0)!");
         } else {
             for (int i = 2; i <= val; i++) {
                 result *= i;

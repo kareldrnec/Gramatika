@@ -11,8 +11,7 @@ public class GrammarErrorListener extends BaseErrorListener {
     public void syntaxError(Recognizer<?, ?> recognizer, Object offendingSymbol, int line, int charPositionInLine, String msg, RecognitionException e) {
         super.syntaxError(recognizer, offendingSymbol, line, charPositionInLine, msg, e);
         this.error = true;
-        this.errorMsg = recognizer.getClass().getSimpleName() + " ERROR: " + msg;
-        //System.exit(0);
+        this.errorMsg = recognizer.getClass().getSimpleName() + " error: " + msg;
     }
 
     public void set() {

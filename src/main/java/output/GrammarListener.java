@@ -28,30 +28,6 @@ public interface GrammarListener extends ParseTreeListener {
 	 */
 	void exitPrint(GrammarParser.PrintContext ctx);
 	/**
-	 * Enter a parse tree produced by the {@code INV}
-	 * labeled alternative in {@link GrammarParser#expression}.
-	 * @param ctx the parse tree
-	 */
-	void enterINV(GrammarParser.INVContext ctx);
-	/**
-	 * Exit a parse tree produced by the {@code INV}
-	 * labeled alternative in {@link GrammarParser#expression}.
-	 * @param ctx the parse tree
-	 */
-	void exitINV(GrammarParser.INVContext ctx);
-	/**
-	 * Enter a parse tree produced by the {@code DIV}
-	 * labeled alternative in {@link GrammarParser#expression}.
-	 * @param ctx the parse tree
-	 */
-	void enterDIV(GrammarParser.DIVContext ctx);
-	/**
-	 * Exit a parse tree produced by the {@code DIV}
-	 * labeled alternative in {@link GrammarParser#expression}.
-	 * @param ctx the parse tree
-	 */
-	void exitDIV(GrammarParser.DIVContext ctx);
-	/**
 	 * Enter a parse tree produced by the {@code ADD}
 	 * labeled alternative in {@link GrammarParser#expression}.
 	 * @param ctx the parse tree
@@ -88,17 +64,17 @@ public interface GrammarListener extends ParseTreeListener {
 	 */
 	void exitRAND(GrammarParser.RANDContext ctx);
 	/**
-	 * Enter a parse tree produced by the {@code MIN}
+	 * Enter a parse tree produced by the {@code MOD}
 	 * labeled alternative in {@link GrammarParser#expression}.
 	 * @param ctx the parse tree
 	 */
-	void enterMIN(GrammarParser.MINContext ctx);
+	void enterMOD(GrammarParser.MODContext ctx);
 	/**
-	 * Exit a parse tree produced by the {@code MIN}
+	 * Exit a parse tree produced by the {@code MOD}
 	 * labeled alternative in {@link GrammarParser#expression}.
 	 * @param ctx the parse tree
 	 */
-	void exitMIN(GrammarParser.MINContext ctx);
+	void exitMOD(GrammarParser.MODContext ctx);
 	/**
 	 * Enter a parse tree produced by the {@code MAX}
 	 * labeled alternative in {@link GrammarParser#expression}.
@@ -136,18 +112,6 @@ public interface GrammarListener extends ParseTreeListener {
 	 */
 	void exitParents(GrammarParser.ParentsContext ctx);
 	/**
-	 * Enter a parse tree produced by the {@code POW}
-	 * labeled alternative in {@link GrammarParser#expression}.
-	 * @param ctx the parse tree
-	 */
-	void enterPOW(GrammarParser.POWContext ctx);
-	/**
-	 * Exit a parse tree produced by the {@code POW}
-	 * labeled alternative in {@link GrammarParser#expression}.
-	 * @param ctx the parse tree
-	 */
-	void exitPOW(GrammarParser.POWContext ctx);
-	/**
 	 * Enter a parse tree produced by the {@code FACT}
 	 * labeled alternative in {@link GrammarParser#expression}.
 	 * @param ctx the parse tree
@@ -171,4 +135,52 @@ public interface GrammarListener extends ParseTreeListener {
 	 * @param ctx the parse tree
 	 */
 	void exitMINUS(GrammarParser.MINUSContext ctx);
+	/**
+	 * Enter a parse tree produced by the {@code INV}
+	 * labeled alternative in {@link GrammarParser#expression}.
+	 * @param ctx the parse tree
+	 */
+	void enterINV(GrammarParser.INVContext ctx);
+	/**
+	 * Exit a parse tree produced by the {@code INV}
+	 * labeled alternative in {@link GrammarParser#expression}.
+	 * @param ctx the parse tree
+	 */
+	void exitINV(GrammarParser.INVContext ctx);
+	/**
+	 * Enter a parse tree produced by the {@code DIV}
+	 * labeled alternative in {@link GrammarParser#expression}.
+	 * @param ctx the parse tree
+	 */
+	void enterDIV(GrammarParser.DIVContext ctx);
+	/**
+	 * Exit a parse tree produced by the {@code DIV}
+	 * labeled alternative in {@link GrammarParser#expression}.
+	 * @param ctx the parse tree
+	 */
+	void exitDIV(GrammarParser.DIVContext ctx);
+	/**
+	 * Enter a parse tree produced by the {@code MIN}
+	 * labeled alternative in {@link GrammarParser#expression}.
+	 * @param ctx the parse tree
+	 */
+	void enterMIN(GrammarParser.MINContext ctx);
+	/**
+	 * Exit a parse tree produced by the {@code MIN}
+	 * labeled alternative in {@link GrammarParser#expression}.
+	 * @param ctx the parse tree
+	 */
+	void exitMIN(GrammarParser.MINContext ctx);
+	/**
+	 * Enter a parse tree produced by the {@code POW}
+	 * labeled alternative in {@link GrammarParser#expression}.
+	 * @param ctx the parse tree
+	 */
+	void enterPOW(GrammarParser.POWContext ctx);
+	/**
+	 * Exit a parse tree produced by the {@code POW}
+	 * labeled alternative in {@link GrammarParser#expression}.
+	 * @param ctx the parse tree
+	 */
+	void exitPOW(GrammarParser.POWContext ctx);
 }
