@@ -4,6 +4,7 @@
 - Double
 ## **Výraz**
 - výrazem (expression) může být složený výraz nebo číslo z číselné soustavy
+- celkový výraz musí být ukončen pomocí ;
 ## **Závorky**
 Oddělovače.
 ```
@@ -146,12 +147,31 @@ WS: ' ' -> skip;
 - byla následně vytvořena třída [EvalVisitor](https://github.com/kareldrnec/Gramatika/blob/main/src/main/java/output/EvalVisitor.java), ve které byly implementovány funkce kalkulačky z [GrammarBaseVisitor](https://github.com/kareldrnec/Gramatika/blob/main/src/main/java/output/GrammarBaseVisitor.java)
 # **Kalkulačka**
 - metoda [main](https://github.com/kareldrnec/Gramatika/blob/main/src/main/java/output/Calculator.java) kalkulačky načítá příklady ze souborů s validními a nevalidními daty
+- výstup kalkulačky:
+```
+--- Typ souboru ---  // validni data nebo nevalidni data
+--- Start ---
+výpis vyhodnocení řádku v souboru se zadaným výrazem
+--- Konec ---
+```
 ## **Validní data**
 - validní data jsou obsažena v souboru [valid.txt](https://github.com/kareldrnec/Gramatika/blob/main/src/main/files/valid.txt)
 - co jeden řádek, to jeden příklad
 ## **Nevalidní data**
 - nevalidní data jsou obsažena v souboru [invalid.txt](https://github.com/kareldrnec/Gramatika/blob/main/src/main/files/invalid.txt)
 - co jeden řádek, to jeden příklad (špatně zapsaný nebo špatná hodnota výrazu)
-## FileParser
+## **FileParser**
 - soubory jsou načítány pomocí vytvořené třídy [FileParser](https://github.com/kareldrnec/Gramatika/blob/main/src/main/java/output/FileParser.java), ve které pomocí FileReaderu jsou načítány řádky do pole typu String (v kalkulačce se poté iteruje přes prvky tohoto pole)
-##
+## **Ošetření chyb**
+- Ošetření chyb při analýzách (lexer, parser)
+- Ošetření chyb při výpočtu
+### **Ošetření chyb při analýzách (lexer, parser)**
+- pro ošetření chyb (lexer/parser) byla vytvořena třída [GrammarErrorListener](https://github.com/kareldrnec/Gramatika/blob/main/src/main/java/output/GrammarErrorListener.java), která rozšiřuje třídu BaseErrorListener
+- obsahuje navíc privátní proměnné error, errorMsg a modifikuje metodu syntaxError
+- do chybové zprávy je uloženo, ve které části (lexer/parser) došlo k chybě a obsah chyby
+- v [main](https://github.com/kareldrnec/Gramatika/blob/main/src/main/java/output/Calculator.java) je poté tato třída přidána jako ErrorListener pro lexer a parser
+- při výpisu je ještě přidáno číslo řádku v souboru, ve kterém se tato chyba vyskytla
+### **Ošetření chyb při výpočtu**
+- při vyhodnocování výrazu může dojít k výpočetní chybě (dělení nulou, příliš velké číslo pro výpočet faktoriálu, při generování náhodného čísla byla zadaní minimální hodnota větší než maximální)
+- v těchto případech je vyhozena chyba IllegalArgumentException v příslušnou zprávou
+- při výpisu je ještě přidáno číslo řádku v souboru, ve kterém se tato chyba vyskytla
