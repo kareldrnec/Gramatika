@@ -99,7 +99,7 @@ minimum(číslo1,číslo2);
 ```
 # Definovaná gramatika
 - pomocí ANTLR4
-- definována v souboru Grammar.g4
+- definována v souboru [Grammar.g4](https://github.com/kareldrnec/Gramatika/blob/main/src/main/java/Grammar.g4)
 ```
 grammar Grammar;
 
@@ -142,3 +142,5 @@ DOUBLE: [0-9]+([0-9]+)* '.' [0-9]+([0-9]+)*;
 NEWLINE: [\t\r\n] -> skip;
 WS: ' ' -> skip;
 ```
+- následně byl vygenerován lexer, parser,... z definováné gramatiky pomocí Generate ANTLR Recognizer, při kterém bylo specifikáno, že bude generován i Visitor
+- byla následně vytvořena třída [EvalVisitor](https://github.com/kareldrnec/Gramatika/blob/main/src/main/java/output/EvalVisitor.java), ve které byly implementovány funkce kalkulačky z [GrammarBaseVisitor](https://github.com/kareldrnec/Gramatika/blob/main/src/main/java/output/GrammarBaseVisitor.java)
