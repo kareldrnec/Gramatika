@@ -4,16 +4,16 @@ program: print*;
 
 print: expression ';';
 
-expression:'(' expression ')'               # Parents // zavorky
+expression:'(' expression ')'               # Parents
           | expression POW expression       # POW
           | expression MUL expression       # MUL
           | expression DIV expression       # DIV
           | expression MOD expression       # MOD
-          | expression ADD expression       # ADD   // scitani
-          | expression MINUS expression     # MINUS // odecitani
+          | expression ADD expression       # ADD
+          | expression MINUS expression     # MINUS
           | INV '(' expression ')'          # INV
-          | FACT '(' expression ')'         # FACT  // faktorial
-          | RAND '(' NUMBER ',' NUMBER ')'  # RAND  // nahodne cislo rand(min, max)
+          | FACT '(' expression ')'         # FACT
+          | RAND '(' NUMBER ',' NUMBER ')'  # RAND
           | MAX '(' NUMBER ',' NUMBER ')'   # MAX
           | MIN '(' NUMBER ',' NUMBER ')'   # MIN
           | NUMBER                          # NUMBER

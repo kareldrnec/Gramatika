@@ -17,12 +17,12 @@ public class Calculator {
         FileParser fp = new FileParser();
 
         // Validni data
-        // System.out.println("--- Validní data ---");
-        // fp.setLines("src/main/files/valid.txt");
+        System.out.println("--- Validní data ---");
+        fp.setLines("src/main/files/valid.txt");
 
         // Nevalidni data
-        System.out.println("--- Nevalidní data ---");
-        fp.setLines("src/main/files/invalid.txt");
+        // System.out.println("--- Nevalidní data ---");
+        // fp.setLines("src/main/files/invalid.txt");
 
         lines = fp.getLines();
 
