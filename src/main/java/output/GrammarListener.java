@@ -28,6 +28,18 @@ public interface GrammarListener extends ParseTreeListener {
 	 */
 	void exitPrint(GrammarParser.PrintContext ctx);
 	/**
+	 * Enter a parse tree produced by the {@code INV}
+	 * labeled alternative in {@link GrammarParser#expression}.
+	 * @param ctx the parse tree
+	 */
+	void enterINV(GrammarParser.INVContext ctx);
+	/**
+	 * Exit a parse tree produced by the {@code INV}
+	 * labeled alternative in {@link GrammarParser#expression}.
+	 * @param ctx the parse tree
+	 */
+	void exitINV(GrammarParser.INVContext ctx);
+	/**
 	 * Enter a parse tree produced by the {@code DIV}
 	 * labeled alternative in {@link GrammarParser#expression}.
 	 * @param ctx the parse tree
@@ -75,6 +87,30 @@ public interface GrammarListener extends ParseTreeListener {
 	 * @param ctx the parse tree
 	 */
 	void exitRAND(GrammarParser.RANDContext ctx);
+	/**
+	 * Enter a parse tree produced by the {@code MIN}
+	 * labeled alternative in {@link GrammarParser#expression}.
+	 * @param ctx the parse tree
+	 */
+	void enterMIN(GrammarParser.MINContext ctx);
+	/**
+	 * Exit a parse tree produced by the {@code MIN}
+	 * labeled alternative in {@link GrammarParser#expression}.
+	 * @param ctx the parse tree
+	 */
+	void exitMIN(GrammarParser.MINContext ctx);
+	/**
+	 * Enter a parse tree produced by the {@code MAX}
+	 * labeled alternative in {@link GrammarParser#expression}.
+	 * @param ctx the parse tree
+	 */
+	void enterMAX(GrammarParser.MAXContext ctx);
+	/**
+	 * Exit a parse tree produced by the {@code MAX}
+	 * labeled alternative in {@link GrammarParser#expression}.
+	 * @param ctx the parse tree
+	 */
+	void exitMAX(GrammarParser.MAXContext ctx);
 	/**
 	 * Enter a parse tree produced by the {@code MUL}
 	 * labeled alternative in {@link GrammarParser#expression}.

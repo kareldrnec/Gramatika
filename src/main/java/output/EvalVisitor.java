@@ -1,5 +1,7 @@
 package output;
 
+import java.util.Random;
+
 public class EvalVisitor extends GrammarBaseVisitor<Float>{
     @Override public Float visitProgram(GrammarParser.ProgramContext ctx) { return visitChildren(ctx); }
     /**
@@ -9,7 +11,16 @@ public class EvalVisitor extends GrammarBaseVisitor<Float>{
      * {@link #visitChildren} on {@code ctx}.</p>
      */
     @Override public Float visitPrint(GrammarParser.PrintContext ctx) {
-        return 0f;
+        Float value = visit(ctx.expression());
+
+        Integer intValue = value.intValue();
+
+        if ((value - intValue) == 0) {
+            System.out.println(intValue);
+        } else {
+            System.out.println(value);
+        }
+        return value;
     }
     /**
      * {@inheritDoc}
@@ -17,6 +28,12 @@ public class EvalVisitor extends GrammarBaseVisitor<Float>{
      * <p>The default implementation returns the result of calling
      * {@link #visitChildren} on {@code ctx}.</p>
      */
+    @Override public Float visitPOW(GrammarParser.POWContext ctx) {
+        Float left = visit(ctx.expression(0));
+        Float right = visit(ctx.expression(1));
+        return (float) Math.pow(left, right);
+    }
+
 
     @Override public Float visitADD(GrammarParser.ADDContext ctx) {
         Float left = visit(ctx.expression(0));
@@ -41,7 +58,7 @@ public class EvalVisitor extends GrammarBaseVisitor<Float>{
         Float right = visit(ctx.expression(1));
         if (right == 0) {
             System.err.println("divide by zero at: Line " + ctx.getStart().getLine() + ", Position " + ctx.getStart().getCharPositionInLine());
-            System.exit(0);
+            //System.exit(0);
         }
         return left / right;
     }
@@ -50,44 +67,74 @@ public class EvalVisitor extends GrammarBaseVisitor<Float>{
         return Float.valueOf(ctx.NUMBER().getText());
     }
 
-    @Override public Float visitRAND(GrammarParser.RANDContext ctx) { return visitChildren(ctx); }
-    /**
-     * {@inheritDoc}
-     *
-     * <p>The default implementation returns the result of calling
-     * {@link #visitChildren} on {@code ctx}.</p>
-     */
+    // rand
+    @Override public Float visitRAND(GrammarParser.RANDContext ctx) {
+        Float result = 0f;
+        Float min = Float.valueOf(ctx.NUMBER(0).getText());
+        Float max = Float.valueOf(ctx.NUMBER(1).getText());
+        if (min == max) {
+            result = min;
+        } else if (min > max) {
+            System.err.println("Max musi bejt vetsi!");
+            //System.exit(0);
+        } else {
+            Random r = new Random();
+            result = min + r.nextFloat() * (max - min);
+        }
+        return result;
+    }
+    // min
+    @Override public Float visitMIN(GrammarParser.MINContext ctx) {
+        Float min = 0f;
+        Float val1 = Float.valueOf(ctx.NUMBER(0).getText());
+        Float val2 = Float.valueOf(ctx.NUMBER(1).getText());
 
-    /**
-     * {@inheritDoc}
-     *
-     * <p>The default implementation returns the result of calling
-     * {@link #visitChildren} on {@code ctx}.</p>
-     */
+        if (val1 > val2) {
+            min = val2;
+        } else {
+            min = val1;
+        }
+        return min;
+    }
+
+    // max
+    @Override public Float visitMAX(GrammarParser.MAXContext ctx) {
+        Float max = 0f;
+        Float val1 = Float.valueOf(ctx.NUMBER(0).getText());
+        Float val2 = Float.valueOf(ctx.NUMBER(1).getText());
+        if (val1 < val2) {
+            max = val2;
+        } else {
+            max = val1;
+        }
+        return max;
+    }
+
+    @Override public Float visitINV(GrammarParser.INVContext ctx) {
+        Float val = visit(ctx.expression());
+        return -val;
+    }
+
+    // zavorky
     @Override public Float visitParents(GrammarParser.ParentsContext ctx) {
         return visit(ctx.expression());
     }
-    /**
-     * {@inheritDoc}
-     *
-     * <p>The default implementation returns the result of calling
-     * {@link #visitChildren} on {@code ctx}.</p>
-     */
-    @Override public Float visitPOW(GrammarParser.POWContext ctx) {
-        return 1.2f;
+
+    // faktorial
+    @Override public Float visitFACT(GrammarParser.FACTContext ctx) {
+        Float result = 1f;
+        Float val = visit(ctx.expression());
+
+        Integer intValue = val.intValue();
+        if ((val - intValue) != 0) {
+            System.err.println("Číslo ve faktoriálu musí být celé číslo!");
+            //System.exit(0);
+        } else {
+            for (int i = 2; i <= val; i++) {
+                result *= i;
+            }
+        }
+        return result;
     }
-    /**
-     * {@inheritDoc}
-     *
-     * <p>The default implementation returns the result of calling
-     * {@link #visitChildren} on {@code ctx}.</p>
-     */
-    @Override public Float visitFACT(GrammarParser.FACTContext ctx) { return visitChildren(ctx); }
-    /**
-     * {@inheritDoc}
-     *
-     * <p>The default implementation returns the result of calling
-     * {@link #visitChildren} on {@code ctx}.</p>
-     */
 
 }

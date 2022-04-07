@@ -23,6 +23,13 @@ public interface GrammarVisitor<T> extends ParseTreeVisitor<T> {
 	 */
 	T visitPrint(GrammarParser.PrintContext ctx);
 	/**
+	 * Visit a parse tree produced by the {@code INV}
+	 * labeled alternative in {@link GrammarParser#expression}.
+	 * @param ctx the parse tree
+	 * @return the visitor result
+	 */
+	T visitINV(GrammarParser.INVContext ctx);
+	/**
 	 * Visit a parse tree produced by the {@code DIV}
 	 * labeled alternative in {@link GrammarParser#expression}.
 	 * @param ctx the parse tree
@@ -50,6 +57,20 @@ public interface GrammarVisitor<T> extends ParseTreeVisitor<T> {
 	 * @return the visitor result
 	 */
 	T visitRAND(GrammarParser.RANDContext ctx);
+	/**
+	 * Visit a parse tree produced by the {@code MIN}
+	 * labeled alternative in {@link GrammarParser#expression}.
+	 * @param ctx the parse tree
+	 * @return the visitor result
+	 */
+	T visitMIN(GrammarParser.MINContext ctx);
+	/**
+	 * Visit a parse tree produced by the {@code MAX}
+	 * labeled alternative in {@link GrammarParser#expression}.
+	 * @param ctx the parse tree
+	 * @return the visitor result
+	 */
+	T visitMAX(GrammarParser.MAXContext ctx);
 	/**
 	 * Visit a parse tree produced by the {@code MUL}
 	 * labeled alternative in {@link GrammarParser#expression}.
