@@ -98,6 +98,56 @@ min(číslo1,číslo2);
 nebo
 minimum(číslo1,číslo2);
 ```
+# **Validní/nevalidní data**
+- definovány v souborech (.txt) ve složce [files](https://github.com/kareldrnec/Gramatika/tree/main/src/main/files)
+## **Validní data**
+```
+fact(9);
+5;
+9.5;
+inv(5);
+inv(9.5);
+5-inv(2);
+1+9-20*(20-4);
+rand(2,10);
+rand(2.3,10.9);
+fact(9);
+fact(12);
+1+9*101+120;
+1-9*(12+5-(5*6));
+1/5;
+1.2/3;
+1.2/0.5;
+min(3,3.2);
+max(3,3.2);
+max(3,9.5)*2;
+5-max(2,4);
+5-min(2,4);
+inv(5)+25/5;
+fact(7)+65*(2-9);
+(((5*6)+max(5,6))*2);
+20%7;
+14+64*95%9;
+```
+## **Nevalidní data**
+```
+54
+12-+5;
+14+-9;
+inv(-5);
+14+(;
+14+9*((-50);
+rand(4+5,5);
+fact(5*6+3)+;
+9*%5;
+9%-2;
+rnd(2,4);
+9/0;
+fact(10+3);
+fact(4.5);
+min(6+5,50);
+min6,5);
+```
 # **Definovaná gramatika**
 - pomocí ANTLR4
 - definována v souboru [Grammar.g4](https://github.com/kareldrnec/Gramatika/blob/main/src/main/java/Grammar.g4)
