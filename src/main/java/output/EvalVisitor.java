@@ -2,11 +2,11 @@ package output;
 
 import java.util.Random;
 
-public class EvalVisitor extends GrammarBaseVisitor<Float>{
-    @Override public Float visitProgram(GrammarParser.ProgramContext ctx) { return visitChildren(ctx); }
+public class EvalVisitor extends GrammarBaseVisitor<Double>{
+    @Override public Double visitProgram(GrammarParser.ProgramContext ctx) { return visitChildren(ctx); }
 
-    @Override public Float visitPrint(GrammarParser.PrintContext ctx) {
-        Float value = visit(ctx.expression());
+    @Override public Double visitPrint(GrammarParser.PrintContext ctx) {
+        Double value = visit(ctx.expression());
         Integer intValue = value.intValue();
         if ((value - intValue) == 0) {
             System.out.println(intValue);
@@ -16,55 +16,55 @@ public class EvalVisitor extends GrammarBaseVisitor<Float>{
         return value;
     }
 
-    @Override public Float visitPOW(GrammarParser.POWContext ctx) {
-        Float left = visit(ctx.expression(0));
-        Float right = visit(ctx.expression(1));
-        return (float) Math.pow(left, right);
+    @Override public Double visitPOW(GrammarParser.POWContext ctx) {
+        Double left = visit(ctx.expression(0));
+        Double right = visit(ctx.expression(1));
+        return (Double) Math.pow(left, right);
     }
 
 
-    @Override public Float visitADD(GrammarParser.ADDContext ctx) {
-        Float left = visit(ctx.expression(0));
-        Float right = visit(ctx.expression(1));
+    @Override public Double visitADD(GrammarParser.ADDContext ctx) {
+        Double left = visit(ctx.expression(0));
+        Double right = visit(ctx.expression(1));
         return left + right;
     }
 
-    @Override public Float visitMINUS(GrammarParser.MINUSContext ctx) {
-        Float left = visit(ctx.expression(0));
-        Float right = visit(ctx.expression(1));
+    @Override public Double visitMINUS(GrammarParser.MINUSContext ctx) {
+        Double left = visit(ctx.expression(0));
+        Double right = visit(ctx.expression(1));
         return left - right;
     }
 
-    @Override public Float visitMUL(GrammarParser.MULContext ctx) {
-        Float left = visit(ctx.expression(0));
-        Float right = visit(ctx.expression(1));
+    @Override public Double visitMUL(GrammarParser.MULContext ctx) {
+        Double left = visit(ctx.expression(0));
+        Double right = visit(ctx.expression(1));
         return left * right;
     }
 
-    @Override public Float visitMOD(GrammarParser.MODContext ctx) {
-        Float left = visit(ctx.expression(0));
-        Float right = visit(ctx.expression(1));
+    @Override public Double visitMOD(GrammarParser.MODContext ctx) {
+        Double left = visit(ctx.expression(0));
+        Double right = visit(ctx.expression(1));
         return left % right;
     }
 
 
-    @Override public Float visitDIV(GrammarParser.DIVContext ctx) {
-        Float left = visit(ctx.expression(0));
-        Float right = visit(ctx.expression(1));
+    @Override public Double visitDIV(GrammarParser.DIVContext ctx) {
+        Double left = visit(ctx.expression(0));
+        Double right = visit(ctx.expression(1));
         if (right == 0) {
             throw new IllegalArgumentException("IllegalArgumentException: Nelze delit cislem 0!");
         }
         return left / right;
     }
 
-    @Override public Float visitNUMBER(GrammarParser.NUMBERContext ctx) {
-        return Float.valueOf(ctx.NUMBER().getText());
+    @Override public Double visitNUMBER(GrammarParser.NUMBERContext ctx) {
+        return Double.valueOf(ctx.NUMBER().getText());
     }
 
-    @Override public Float visitRAND(GrammarParser.RANDContext ctx) {
-        Float result = 0f;
-        Float min = Float.valueOf(ctx.NUMBER(0).getText());
-        Float max = Float.valueOf(ctx.NUMBER(1).getText());
+    @Override public Double visitRAND(GrammarParser.RANDContext ctx) {
+        Double result = null;
+        Double min = Double.valueOf(ctx.NUMBER(0).getText());
+        Double max = Double.valueOf(ctx.NUMBER(1).getText());
         if (min == max) {
             result = min;
         } else if (min > max) {
@@ -76,10 +76,10 @@ public class EvalVisitor extends GrammarBaseVisitor<Float>{
         return result;
     }
 
-    @Override public Float visitMIN(GrammarParser.MINContext ctx) {
-        Float min = 0f;
-        Float val1 = Float.valueOf(ctx.NUMBER(0).getText());
-        Float val2 = Float.valueOf(ctx.NUMBER(1).getText());
+    @Override public Double visitMIN(GrammarParser.MINContext ctx) {
+        Double min = null;
+        Double val1 = Double.valueOf(ctx.NUMBER(0).getText());
+        Double val2 = Double.valueOf(ctx.NUMBER(1).getText());
         if (val1 > val2) {
             min = val2;
         } else {
@@ -88,10 +88,10 @@ public class EvalVisitor extends GrammarBaseVisitor<Float>{
         return min;
     }
 
-    @Override public Float visitMAX(GrammarParser.MAXContext ctx) {
-        Float max = 0f;
-        Float val1 = Float.valueOf(ctx.NUMBER(0).getText());
-        Float val2 = Float.valueOf(ctx.NUMBER(1).getText());
+    @Override public Double visitMAX(GrammarParser.MAXContext ctx) {
+        Double max = null;
+        Double val1 = Double.valueOf(ctx.NUMBER(0).getText());
+        Double val2 = Double.valueOf(ctx.NUMBER(1).getText());
         if (val1 < val2) {
             max = val2;
         } else {
@@ -100,18 +100,18 @@ public class EvalVisitor extends GrammarBaseVisitor<Float>{
         return max;
     }
 
-    @Override public Float visitINV(GrammarParser.INVContext ctx) {
-        Float val = visit(ctx.expression());
+    @Override public Double visitINV(GrammarParser.INVContext ctx) {
+        Double val = visit(ctx.expression());
         return -val;
     }
 
-    @Override public Float visitParents(GrammarParser.ParentsContext ctx) {
+    @Override public Double visitParents(GrammarParser.ParentsContext ctx) {
         return visit(ctx.expression());
     }
 
-    @Override public Float visitFACT(GrammarParser.FACTContext ctx) {
-        Float result = 1f;
-        Float val = visit(ctx.expression());
+    @Override public Double visitFACT(GrammarParser.FACTContext ctx) {
+        Double result = 1.0;
+        Double val = visit(ctx.expression());
         Integer intValue = val.intValue();
         if ((val - intValue) != 0) {
             throw new IllegalArgumentException("Číslo ve faktoriálu musí být celé kladné číslo!");
