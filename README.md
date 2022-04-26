@@ -223,7 +223,7 @@ WS: ' ' -> skip;
 - co jeden řádek, to jeden příklad (špatně zapsaný nebo špatná hodnota výrazu)
 ## **Spuštění kalkulačky**
 - stažení souboru Calculator.jar a souborů s daty (valid.txt a invalid.txt)
-- spuštění kalkulačky pomocí příkazů
+- spuštění kalkulačky pomocí příkazu:
 ```
 java -jar Calculator.jar volba
 ```
