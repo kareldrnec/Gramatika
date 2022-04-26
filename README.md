@@ -195,21 +195,7 @@ WS: ' ' -> skip;
 ```
 - následně byl vygenerován lexer, parser,... z definováné gramatiky pomocí Generate ANTLR Recognizer, při kterém bylo specifikáno, že bude generován i Visitor
 - byla následně vytvořena třída [EvalVisitor](https://github.com/kareldrnec/Gramatika/blob/main/src/main/java/output/EvalVisitor.java), ve které byly implementovány funkce kalkulačky z [GrammarBaseVisitor](https://github.com/kareldrnec/Gramatika/blob/main/src/main/java/output/GrammarBaseVisitor.java)
-# **Kalkulačka**
-- metoda [main](https://github.com/kareldrnec/Gramatika/blob/main/src/main/java/output/Calculator.java) kalkulačky načítá příklady ze souborů s validními a nevalidními daty
-- výstup kalkulačky:
-```
---- Typ souboru ---  // validni data nebo nevalidni data
---- Start ---
-výpis vyhodnocení řádku v souboru se zadaným výrazem
---- Konec ---
-```
-## **Validní data**
-- validní data jsou obsažena v souboru [valid.txt](https://github.com/kareldrnec/Gramatika/blob/main/src/main/files/valid.txt)
-- co jeden řádek, to jeden příklad
-## **Nevalidní data**
-- nevalidní data jsou obsažena v souboru [invalid.txt](https://github.com/kareldrnec/Gramatika/blob/main/src/main/files/invalid.txt)
-- co jeden řádek, to jeden příklad (špatně zapsaný nebo špatná hodnota výrazu)
+# Dodatky
 ## **FileParser**
 - soubory jsou načítány pomocí vytvořené třídy [FileParser](https://github.com/kareldrnec/Gramatika/blob/main/src/main/java/output/FileParser.java), ve které pomocí FileReaderu jsou načítány řádky do pole typu String (v kalkulačce se poté iteruje přes prvky tohoto pole)
 ## **Ošetření chyb**
@@ -225,3 +211,33 @@ výpis vyhodnocení řádku v souboru se zadaným výrazem
 - při vyhodnocování výrazu může dojít k výpočetní chybě (dělení nulou, příliš velké číslo pro výpočet faktoriálu, při generování náhodného čísla byla zadaní minimální hodnota větší než maximální)
 - v těchto případech je vyhozena chyba IllegalArgumentException v příslušnou zprávou
 - při výpisu je ještě přidáno číslo řádku v souboru, ve kterém se tato chyba vyskytla
+
+
+# **Kalkulačka**
+- kalkulačka se používá pomocí vytvořeného jar souboru z příkazové řádky
+- soubor Calculator.jar se nachází ve složce [Calculator](https://github.com/kareldrnec/Gramatika/tree/main/Calculator)
+- ve složce [Calculator](https://github.com/kareldrnec/Gramatika/tree/main/Calculator) se nachází i soubor s validními daty [valid.txt](https://github.com/kareldrnec/Gramatika/blob/main/Calculator/valid.txt) a soubor s nevalidními daty [invalid.txt](https://github.com/kareldrnec/Gramatika/blob/main/Calculator/invalid.txt)
+## **Validní data**
+- co jeden řádek, to jeden příklad
+## **Nevalidní data**
+- co jeden řádek, to jeden příklad (špatně zapsaný nebo špatná hodnota výrazu)
+## **Spuštění kalkulačky**
+- stažení souboru Calculator.jar a souborů s daty (valid.txt a invalid.txt)
+- spuštění kalkulačky pomocí příkazů
+```
+java -jar Calculator.jar volba
+```
+### **Volba**
+- volba může být "-f" nebo "-file" pro název vstupního souboru
+- následuje název souboru
+```
+java -jar Calculator.jar -f valid.txt
+nebo
+java -jar Calculator.jar -file valid.txt
+```
+- dále volba může být "-h" nebo "-help" pro zobrazení nápovědy
+```
+java -jar Calculator.jar -h
+nebo
+java -jar Calculator.jar -help
+```
